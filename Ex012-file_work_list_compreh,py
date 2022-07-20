@@ -1,0 +1,46 @@
+# Дальше это я что то бытался ))
+
+# def f(x):
+#     return x**2
+
+
+# path = 'file_for_012.txt'
+# data = open(path, 'r')
+# for line in data:
+#     if int(line) % 2 == 0:
+#         print(int(line)**2)
+# # data.close()
+
+# list = [(int(i), lambda i: int(i)**2) for i in data if int(i) % 2 == 0]
+# print(list)
+# data.close()
+
+# И тут закончил пытаться))
+
+
+f = open('file_for_012.txt', 'r')
+data = f.read() + ' '
+f.close()
+numbers = []
+while data != '':
+    space_pos = data.index(' ')
+    numbers.append(int(data[:space_pos]))
+    data = data[space_pos+1:]
+out = []
+for e in numbers:
+    if not e % 2:
+        out.append((e, e ** 2))
+print(out)
+
+# Далее идет упрощенный вид
+
+def select(f, col):
+    return [f(x) for x in col]
+def where(f, col):
+    return [x for x in col if f(x)]
+data = '1 2 3 5 8 15 38'.split()
+res = select(int, data)
+res = where(lambda x: not x % 2, res)
+res = select(lambda x: (x, x**2), res)
+print(res)
+
